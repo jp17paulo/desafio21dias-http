@@ -77,13 +77,15 @@ namespace http
                 {
 
                     /*Teste de criação de cookies*/
-                    CookieOptions cookieOptions = new CookieOptions();
-                    cookieOptions.Expires = DateTime.Now.AddDays(2);
-                    context.Response.Cookies.Append("Nome", "João Paulo", cookieOptions);
-                    context.Response.Cookies.Append("Sistema", "Windows", cookieOptions);
-                    context.Response.Cookies.Append("Estado", "São Paulo ", cookieOptions);
+                    // CookieOptions cookieOptions = new CookieOptions();
+                    // cookieOptions.Expires = DateTime.Now.AddDays(2);
+                    // context.Response.Cookies.Append("Nome", "João Paulo", cookieOptions);
+                    // context.Response.Cookies.Append("Sistema", "Windows", cookieOptions);
+                    // context.Response.Cookies.Append("Estado", "São Paulo ", cookieOptions);
 
                     context.Response.Headers.Add("Content-Type", "text/html; charset=utf-8");
+                    /********Mudando o status**********/
+                    //context.Response.StatusCode = 200;
 
                     await context.Response.WriteAsync($"<h1>Valores do cookie localhost</h1>");
                     string teste = context.Request.Headers["Cookie"];
@@ -121,9 +123,8 @@ namespace http
 
                     await context.Response.WriteAsync(doc);
                 });
-                 
-                 //Não está salvando o nome
-                 endpoints.MapGet("/csv", async context =>
+                
+                 endpoints.MapGet("/arquivo.csv", async context =>
                 {
                     context.Response.Headers.Add("Content-Type", "text/csv; charset=utf-8");
 
